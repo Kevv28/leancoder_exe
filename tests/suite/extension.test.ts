@@ -6,11 +6,11 @@ suite('LeanCoder Extension Integration Tests', () => {
     vscode.window.showInformationMessage('Start all integration tests.');
 
     test('Extension should be present in registries', () => {
-        assert.ok(vscode.extensions.getExtension('leancoder.leancoder'));
+        assert.ok(vscode.extensions.getExtension('leancoder-ai.leancoder'));
     });
 
     test('Extension should activate successfully', async () => {
-        const ext = vscode.extensions.getExtension('leancoder.leancoder');
+        const ext = vscode.extensions.getExtension('leancoder-ai.leancoder');
         if (ext) {
             await ext.activate();
             assert.strictEqual(ext.isActive, true);

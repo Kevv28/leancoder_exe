@@ -3,7 +3,7 @@
   "displayName": "LeanCoder",
   "description": "A production-ready coding philosophy layer that intercepts prompts, scans workspace context, applies YAGNI/KISS rules, and optimizes diffs.",
   "version": "1.0.0",
-  "publisher": "leancoder",
+  "publisher": "leancoder-ai",
   "repository": {
     "type": "git",
     "url": "https://github.com/leancoder/leancoder.git"
