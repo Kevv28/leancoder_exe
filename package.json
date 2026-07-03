@@ -1,0 +1,190 @@
+{
+  "name": "leancoder",
+  "displayName": "LeanCoder",
+  "description": "A production-ready coding philosophy layer that intercepts prompts, scans workspace context, applies YAGNI/KISS rules, and optimizes diffs.",
+  "version": "1.0.0",
+  "publisher": "leancoder",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leancoder/leancoder.git"
+  },
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "AI",
+    "Programming Languages",
+    "Linters",
+    "Education"
+  ],
+  "activationEvents": [],
+  "main": "./out/src/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "leancoder.lite",
+        "title": "LeanCoder: Switch to Lite Mode",
+        "category": "LeanCoder"
+      },
+      {
+        "command": "leancoder.full",
+        "title": "LeanCoder: Switch to Full Mode",
+        "category": "LeanCoder"
+      },
+      {
+        "command": "leancoder.ultra",
+        "title": "LeanCoder: Switch to Ultra Mode",
+        "category": "LeanCoder"
+      },
+      {
+        "command": "leancoder.review",
+        "title": "LeanCoder: Review Code Complexity",
+        "category": "LeanCoder"
+      },
+      {
+        "command": "leancoder.audit",
+        "title": "LeanCoder: Run Repository Audit",
+        "category": "LeanCoder"
+      },
+      {
+        "command": "leancoder.simplify",
+        "title": "LeanCoder: Simplify Selected Code",
+        "category": "LeanCoder"
+      },
+      {
+        "command": "leancoder.optimize",
+        "title": "LeanCoder: Optimize Selected Code",
+        "category": "LeanCoder"
+      },
+      {
+        "command": "leancoder.benchmark",
+        "title": "LeanCoder: Run Benchmark Metrics",
+        "category": "LeanCoder"
+      },
+      {
+        "command": "leancoder.explain",
+        "title": "LeanCoder: Explain Coding Philosophy",
+        "category": "LeanCoder"
+      }
+    ],
+    "chatParticipants": [
+      {
+        "id": "leancoder",
+        "name": "leancoder",
+        "description": "Your Lean Coding assistant. Enforces YAGNI, KISS, DRY, and deletions.",
+        "isDefault": false,
+        "commands": [
+          {
+            "name": "lite",
+            "description": "Enable Lite mode (subtle suggestions, small footprint)"
+          },
+          {
+            "name": "full",
+            "description": "Enable Full mode (default, standard YAGNI/KISS rules)"
+          },
+          {
+            "name": "ultra",
+            "description": "Enable Ultra mode (aggressive deletions, challenges abstractions)"
+          },
+          {
+            "name": "review",
+            "description": "Review the current file for dead code, nesting, and complexity"
+          },
+          {
+            "name": "audit",
+            "description": "Audit the repository for duplicate utilities, large files, and unused dependencies"
+          },
+          {
+            "name": "simplify",
+            "description": "Simplify the code in the current selection or file"
+          },
+          {
+            "name": "optimize",
+            "description": "Optimize the selected code for performance, readability, and LOC"
+          },
+          {
+            "name": "benchmark",
+            "description": "Generate lines added/removed, token savings, and cost metrics"
+          },
+          {
+            "name": "explain",
+            "description": "Explain LeanCoder philosophy and how to simplify your code"
+          }
+        ]
+      }
+    ],
+    "configuration": {
+      "title": "LeanCoder",
+      "properties": {
+        "leancoder.mode": {
+          "type": "string",
+          "enum": [
+            "lite",
+            "full",
+            "ultra"
+          ],
+          "default": "full",
+          "description": "LeanCoder prompt optimization mode: 'lite', 'full' (default), or 'ultra' (aggressive)."
+        },
+        "leancoder.autoInject": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically inject LeanCoder guidelines into LLM requests."
+        },
+        "leancoder.optimizePrompt": {
+          "type": "boolean",
+          "default": true,
+          "description": "Deduplicate, clean, and compress prompts before sending to the model."
+        },
+        "leancoder.scanWorkspace": {
+          "type": "boolean",
+          "default": true,
+          "description": "Scan active workspace context files (README.md, CLAUDE.md, .cursorrules) for system prompts."
+        },
+        "leancoder.analyzeDiff": {
+          "type": "boolean",
+          "default": true,
+          "description": "Analyze generated diffs to suggest LOC reduction and reuse of utilities."
+        },
+        "leancoder.reuseExisting": {
+          "type": "boolean",
+          "default": true,
+          "description": "Prioritize reusing existing workspace functions, helpers, and components."
+        },
+        "leancoder.preferStdlib": {
+          "type": "boolean",
+          "default": true,
+          "description": "Prefer native standard library solutions over importing third-party dependencies."
+        },
+        "leancoder.preferNative": {
+          "type": "boolean",
+          "default": true,
+          "description": "Prefer native platform APIs over custom helper wrappers."
+        },
+        "leancoder.preferDeletion": {
+          "type": "boolean",
+          "default": true,
+          "description": "Prefer code deletions and refactoring to shrink codebase size."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "echo 'No lint configuration yet'",
+    "test": "node ./out/tests/runTest.js",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.11.24",
+    "@types/vscode": "^1.90.0",
+    "@vscode/test-electron": "^2.3.9",
+    "@vscode/vsce": "^2.24.0",
+    "mocha": "^10.3.0",
+    "typescript": "^5.3.3"
+  }
+}
